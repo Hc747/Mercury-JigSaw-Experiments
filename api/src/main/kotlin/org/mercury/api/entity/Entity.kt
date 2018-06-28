@@ -8,4 +8,3 @@ package org.mercury.api.entity
  */
 
 interface Entity
-

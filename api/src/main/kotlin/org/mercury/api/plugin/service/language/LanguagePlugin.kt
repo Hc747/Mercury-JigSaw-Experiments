@@ -10,7 +10,7 @@ import org.mercury.api.plugin.PluginMetaData
  * @since 28/6/18
  */
 
-@PluginMetaData(name = "LanguagePlugin", description = "The base language plugin interface", authors = ["Hc747"])
+@PluginMetaData(name = "LanguagePlugin", description = "The base language plugin interface.", authors = ["Hc747"])
 interface LanguagePlugin : Plugin {
 
     val language: String

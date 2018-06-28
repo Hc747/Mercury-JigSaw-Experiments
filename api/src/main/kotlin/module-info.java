@@ -9,6 +9,8 @@ module api {
 	requires kotlin.stdlib;
 
 	exports org.mercury.api.entity;
+	exports org.mercury.api.entity.event;
+	exports org.mercury.api.entity.player;
 
 	exports org.mercury.api.event;
 
@@ -17,7 +19,6 @@ module api {
 	exports org.mercury.api.plugin.service.event;
 	exports org.mercury.api.plugin.service.language;
 
-	//uses org.mercury.api.services.services.event.PlayerEventPlugin;
 	uses org.mercury.api.plugin.service.event.EventPlugin;
 
 }

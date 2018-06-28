@@ -11,7 +11,7 @@ import org.mercury.api.plugin.PluginMetaData
  * @since 28/6/18
  */
 
-@PluginMetaData(name = "EventPlugin", description = "The base event plugin interface", authors = ["Hc747"])
+@PluginMetaData(name = "EventPlugin", description = "The base event plugin interface.", authors = ["Hc747"])
 interface EventPlugin<TKey, TEntity> : Plugin {
 
     val key: TKey
