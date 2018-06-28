@@ -21,7 +21,7 @@ object Main {
     fun main(args: Array<String>) {
 
         val player = Player("Hc747")
-        val container = EventContainer(player)
+        val container = EventContainer.withEnumKeyType(EventKey::class.java, player)
 
         val registry = ServiceRegistry(EventPlugin::class.java as Class<EventPlugin<Player>>)
 

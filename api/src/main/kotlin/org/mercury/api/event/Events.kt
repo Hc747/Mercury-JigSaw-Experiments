@@ -17,24 +17,22 @@ enum class EventKey {
 
 typealias Event<T> = (T) -> Unit
 
-class EventContainer<T>(private val entity: T) {
+class EventContainer<K, T> internal constructor(private val entity: T, private val events: MutableMap<K, MutableSet<Event<T>>>) {
 
-    private val events = EnumMap<EventKey, MutableList<Event<T>>>(EventKey::class.java)
-
-    fun invoke(key: EventKey) {
+    fun invoke(key: K) {
         val handlers = events[key] ?: return
         handlers.forEach { it.invoke(entity) }
     }
 
-    fun register(key: EventKey, event: Event<T>) {
-        val handlers = events[key] ?: mutableListOf()
+    fun register(key: K, event: Event<T>) {
+        val handlers = events[key] ?: mutableSetOf()
 
         handlers.add(event)
 
         events[key] = handlers
     }
 
-    fun deregister(key: EventKey, event: Event<T>) {
+    fun deregister(key: K, event: Event<T>) {
         val handlers = events[key] ?: return
 
         handlers.remove(event)
@@ -42,6 +40,20 @@ class EventContainer<T>(private val entity: T) {
         if (handlers.isEmpty()) {
             events.remove(key)
         }
+    }
+
+    companion object {
+
+        fun <K, T> withKeyType(keyType: Class<K>, entity: T): EventContainer<K, T> {
+            val events = mutableMapOf<K, MutableSet<Event<T>>>()
+            return EventContainer(entity, events)
+        }
+
+        fun <K : Enum<K>, T> withEnumKeyType(enumClass: Class<K>, entity: T): EventContainer<K, T> {
+            val events = EnumMap<K, MutableSet<Event<T>>>(enumClass)
+            return EventContainer(entity, events)
+        }
+
     }
 
 }
