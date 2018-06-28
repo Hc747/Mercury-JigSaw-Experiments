@@ -2,29 +2,16 @@ package org.mercury.api.event
 
 import java.util.*
 
-/**
- * @author Harrison | Hc747
- * Contact: harrisoncole05@gmail.com | harrison.cole@uts.edu.au | harrison.cole-1@student.uts.edu.au
- * @version 1.0
- * @since 28/6/18
- */
-
-enum class EventKey {
-    INIT,
-    PROCESS,
-    FINISH
-}
-
 typealias Event<T> = (T) -> Unit
 
-class EventContainer<K, T> internal constructor(private val entity: T, private val events: MutableMap<K, MutableSet<Event<T>>>) {
+class EventContainer<TKey, TEntity> internal constructor(private val entity: TEntity, private val events: MutableMap<TKey, MutableSet<Event<TEntity>>>) {
 
-    fun invoke(key: K) {
+    fun invoke(key: TKey) {
         val handlers = events[key] ?: return
         handlers.forEach { it.invoke(entity) }
     }
 
-    fun register(key: K, event: Event<T>) {
+    fun register(key: TKey, event: Event<TEntity>) {
         val handlers = events[key] ?: mutableSetOf()
 
         handlers.add(event)
@@ -32,7 +19,7 @@ class EventContainer<K, T> internal constructor(private val entity: T, private v
         events[key] = handlers
     }
 
-    fun deregister(key: K, event: Event<T>) {
+    fun deregister(key: TKey, event: Event<TEntity>) {
         val handlers = events[key] ?: return
 
         handlers.remove(event)
@@ -44,13 +31,13 @@ class EventContainer<K, T> internal constructor(private val entity: T, private v
 
     companion object {
 
-        fun <K, T> withKeyType(keyType: Class<K>, entity: T): EventContainer<K, T> {
-            val events = mutableMapOf<K, MutableSet<Event<T>>>()
+        fun <TKey, TEntity> withKeyType(keyType: Class<TKey>, entity: TEntity): EventContainer<TKey, TEntity> {
+            val events = mutableMapOf<TKey, MutableSet<Event<TEntity>>>()
             return EventContainer(entity, events)
         }
 
-        fun <K : Enum<K>, T> withEnumKeyType(enumClass: Class<K>, entity: T): EventContainer<K, T> {
-            val events = EnumMap<K, MutableSet<Event<T>>>(enumClass)
+        fun <TKey : Enum<TKey>, TEntity> withEnumKeyType(enumClass: Class<TKey>, entity: TEntity): EventContainer<TKey, TEntity> {
+            val events = EnumMap<TKey, MutableSet<Event<TEntity>>>(enumClass)
             return EventContainer(entity, events)
         }
 

@@ -1,4 +1,4 @@
-package org.mercury.api.plugins
+package org.mercury.api.plugin
 
 import java.lang.annotation.Inherited
 

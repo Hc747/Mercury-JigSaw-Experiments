@@ -1,10 +1,10 @@
-package org.mercury.api.plugins.providers.event.greeter
+package org.mercury.api.plugin.providers.event.greeter
 
-import org.mercury.api.entity.Player
+import org.mercury.api.entity.player.Player
 import org.mercury.api.event.Event
-import org.mercury.api.event.EventKey
-import org.mercury.api.plugins.PluginMetaData
-import org.mercury.api.plugins.services.event.EventPlugin
+import org.mercury.api.entity.event.EntityEventKey
+import org.mercury.api.plugin.PluginMetaData
+import org.mercury.api.plugin.service.event.EventPlugin
 
 /**
  * @author Harrison | Hc747
@@ -14,18 +14,18 @@ import org.mercury.api.plugins.services.event.EventPlugin
  */
 
 @PluginMetaData(name = "PlayerAppearanceUpdatePlugin", description = "Updates the players appearance", authors = ["Hc747"])
-class PlayerAppearanceUpdatePlugin : EventPlugin<Player> {
+class PlayerAppearanceUpdatePlugin : EventPlugin<EntityEventKey, Player> {
 
-    override val key = EventKey.PROCESS
+    override val key = EntityEventKey.PROCESS
 
     override val event: Event<Player> = { it.say("Appearance Updated!") }
 
 }
 
 @PluginMetaData(name = "PlayerMovementUpdatePlugin", description = "Updates the players movement", authors = ["Hc747"])
-class PlayerMovementUpdatePlugin : EventPlugin<Player> {
+class PlayerMovementUpdatePlugin : EventPlugin<EntityEventKey, Player> {
 
-    override val key = EventKey.PROCESS
+    override val key = EntityEventKey.PROCESS
 
     override val event: Event<Player> = { it.say("Player Moved!") }
 

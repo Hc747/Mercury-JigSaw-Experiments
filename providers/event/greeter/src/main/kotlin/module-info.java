@@ -1,4 +1,4 @@
-import org.mercury.api.plugins.providers.event.greeter.*;
+import org.mercury.api.plugin.providers.event.greeter.*;
 
 /**
  * @author Harrison | Hc747
@@ -11,7 +11,7 @@ module providers.event.greeter {
 	requires kotlin.stdlib;
 	requires api;
 
-	provides org.mercury.api.plugins.services.event.EventPlugin with
+	provides org.mercury.api.plugin.service.event.EventPlugin with
 			PlayerGreeterPlugin, PlayerFarewellPlugin,
 			PlayerAppearanceUpdatePlugin, PlayerMovementUpdatePlugin;
 

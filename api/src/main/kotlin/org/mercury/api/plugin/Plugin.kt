@@ -1,6 +1,4 @@
-package org.mercury.api.plugins.services.registry
-
-import java.util.*
+package org.mercury.api.plugin
 
 /**
  * @author Harrison | Hc747
@@ -9,8 +7,8 @@ import java.util.*
  * @since 28/6/18
  */
 
-class ServiceRegistry<T>(_class: Class<T>) {
+interface Plugin {
 
-    val services = ServiceLoader.load(_class)!!
+    fun meta() = this::class.java.getAnnotation(PluginMetaData::class.java)!!
 
 }

@@ -1,7 +1,7 @@
-package org.mercury.api.plugins.providers.language.french
+package org.mercury.api.plugin.providers.language.french
 
-import org.mercury.api.plugins.PluginMetaData
-import org.mercury.api.plugins.services.language.LanguagePlugin
+import org.mercury.api.plugin.PluginMetaData
+import org.mercury.api.plugin.service.language.LanguagePlugin
 
 /**
  * @author Harrison | Hc747

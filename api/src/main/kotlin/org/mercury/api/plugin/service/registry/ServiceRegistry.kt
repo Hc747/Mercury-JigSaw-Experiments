@@ -1,4 +1,6 @@
-package org.mercury.api.entity
+package org.mercury.api.plugin.service.registry
+
+import java.util.*
 
 /**
  * @author Harrison | Hc747
@@ -7,10 +9,8 @@ package org.mercury.api.entity
  * @since 28/6/18
  */
 
-interface Entity
+class ServiceRegistry<TService>(_class: Class<TService>) {
 
-class Player(val name: String) : Entity {
-
-    fun say(message: String) = println("$name: $message")
+    val services = ServiceLoader.load(_class)!!
 
 }

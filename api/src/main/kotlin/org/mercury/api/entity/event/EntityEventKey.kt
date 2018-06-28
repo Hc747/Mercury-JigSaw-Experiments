@@ -1,4 +1,4 @@
-package org.mercury.api.plugins
+package org.mercury.api.entity.event
 
 /**
  * @author Harrison | Hc747
@@ -7,8 +7,8 @@ package org.mercury.api.plugins
  * @since 28/6/18
  */
 
-interface Plugin {
-
-    fun meta() = this::class.java.getAnnotation(PluginMetaData::class.java)!!
-
+enum class EntityEventKey {
+    INIT,
+    PROCESS,
+    FINISH
 }

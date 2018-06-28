@@ -1,4 +1,4 @@
-import org.mercury.api.plugins.providers.language.french.FrenchPlugin;
+import org.mercury.api.plugin.providers.language.french.FrenchPlugin;
 
 /**
  * @author Harrison | Hc747
@@ -11,6 +11,6 @@ module providers.language.french {
 	requires kotlin.stdlib;
 	requires api;
 
-	provides org.mercury.api.plugins.services.language.LanguagePlugin with FrenchPlugin;
+	provides org.mercury.api.plugin.service.language.LanguagePlugin with FrenchPlugin;
 
 }

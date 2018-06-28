@@ -1,11 +1,11 @@
 package org.mercury
 
-import org.mercury.api.entity.Player
+import org.mercury.api.entity.player.Player
 import org.mercury.api.event.EventContainer
-import org.mercury.api.event.EventKey
-import org.mercury.api.plugins.PluginMetaData
-import org.mercury.api.plugins.services.event.EventPlugin
-import org.mercury.api.plugins.services.registry.ServiceRegistry
+import org.mercury.api.entity.event.EntityEventKey
+import org.mercury.api.plugin.PluginMetaData
+import org.mercury.api.plugin.service.event.EventPlugin
+import org.mercury.api.plugin.service.registry.ServiceRegistry
 import java.util.*
 
 /**
@@ -21,9 +21,9 @@ object Main {
     fun main(args: Array<String>) {
 
         val player = Player("Hc747")
-        val container = EventContainer.withEnumKeyType(EventKey::class.java, player)
+        val container = EventContainer.withEnumKeyType(EntityEventKey::class.java, player)
 
-        val registry = ServiceRegistry(EventPlugin::class.java as Class<EventPlugin<Player>>)
+        val registry = ServiceRegistry(EventPlugin::class.java as Class<EventPlugin<EntityEventKey, Player>>)
 
         registry.services.forEach {
             plugin -> container.register(plugin.key, plugin.event)
@@ -31,13 +31,13 @@ object Main {
             plugin.meta().info()
         }
 
-        container.invoke(EventKey.INIT)
+        container.invoke(EntityEventKey.INIT)
 
         for (i in 1 .. 3) {
-            container.invoke(EventKey.PROCESS)
+            container.invoke(EntityEventKey.PROCESS)
         }
 
-        container.invoke(EventKey.FINISH)
+        container.invoke(EntityEventKey.FINISH)
 
     }
 

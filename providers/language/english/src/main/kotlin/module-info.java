@@ -1,4 +1,4 @@
-import org.mercury.api.plugins.providers.language.english.EnglishPlugin;
+import org.mercury.api.plugin.providers.language.english.EnglishPlugin;
 
 /**
  * @author Harrison | Hc747
@@ -11,6 +11,6 @@ module providers.language.english {
 	requires kotlin.stdlib;
 	requires api;
 
-	provides org.mercury.api.plugins.services.language.LanguagePlugin with EnglishPlugin;
+	provides org.mercury.api.plugin.service.language.LanguagePlugin with EnglishPlugin;
 
 }

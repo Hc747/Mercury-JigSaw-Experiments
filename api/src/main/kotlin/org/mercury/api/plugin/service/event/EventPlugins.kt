@@ -1,9 +1,8 @@
-package org.mercury.api.plugins.services.event
+package org.mercury.api.plugin.service.event
 
 import org.mercury.api.event.Event
-import org.mercury.api.event.EventKey
-import org.mercury.api.plugins.Plugin
-import org.mercury.api.plugins.PluginMetaData
+import org.mercury.api.plugin.Plugin
+import org.mercury.api.plugin.PluginMetaData
 
 /**
  * @author Harrison | Hc747
@@ -13,10 +12,10 @@ import org.mercury.api.plugins.PluginMetaData
  */
 
 @PluginMetaData(name = "EventPlugin", description = "The base event plugin interface", authors = ["Hc747"])
-interface EventPlugin<T> : Plugin {
+interface EventPlugin<TKey, TEntity> : Plugin {
 
-    val key: EventKey
+    val key: TKey
 
-    val event: Event<T>
+    val event: Event<TEntity>
 
 }

@@ -1,10 +1,10 @@
-package org.mercury.api.plugins.providers.event.greeter
+package org.mercury.api.plugin.providers.event.greeter
 
-import org.mercury.api.entity.Player
+import org.mercury.api.entity.player.Player
 import org.mercury.api.event.Event
-import org.mercury.api.event.EventKey
-import org.mercury.api.plugins.PluginMetaData
-import org.mercury.api.plugins.services.event.EventPlugin
+import org.mercury.api.entity.event.EntityEventKey
+import org.mercury.api.plugin.PluginMetaData
+import org.mercury.api.plugin.service.event.EventPlugin
 
 /**
  * @author Harrison | Hc747
@@ -14,18 +14,18 @@ import org.mercury.api.plugins.services.event.EventPlugin
  */
 
 @PluginMetaData(name = "PlayerGreeterPlugin", description = "Welcomes the player to the game.", authors = ["Hc747"])
-class PlayerGreeterPlugin : EventPlugin<Player> {
+class PlayerGreeterPlugin : EventPlugin<EntityEventKey, Player> {
 
-    override val key = EventKey.INIT
+    override val key = EntityEventKey.INIT
 
     override val event: Event<Player> = { it.say("Welcome to RuneScape.") }
 
 }
 
 @PluginMetaData(name = "PlayerGreeterPlugin", description = "Bids the player farewell and thanks them for playing.", authors = ["Hc747"])
-class PlayerFarewellPlugin : EventPlugin<Player> {
+class PlayerFarewellPlugin : EventPlugin<EntityEventKey, Player> {
 
-    override val key = EventKey.FINISH
+    override val key = EntityEventKey.FINISH
 
     override val event: Event<Player> = { it.say("Farewell, thank you for playing.") }
 
