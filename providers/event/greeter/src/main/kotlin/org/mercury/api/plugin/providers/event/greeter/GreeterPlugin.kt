@@ -1,8 +1,8 @@
 package org.mercury.api.plugin.providers.event.greeter
 
+import org.mercury.api.entity.event.EntityEventKey
 import org.mercury.api.entity.player.Player
 import org.mercury.api.event.Event
-import org.mercury.api.entity.event.EntityEventKey
 import org.mercury.api.plugin.PluginMetaData
 import org.mercury.api.plugin.service.event.EventPlugin
 
@@ -18,7 +18,7 @@ class PlayerGreeterPlugin : EventPlugin<EntityEventKey, Player> {
 
     override val key = EntityEventKey.INIT
 
-    override val event: Event<Player> = { it.say("Welcome to RuneScape.") }
+    override val event: Event<Player> = { it.say("Welcome to XXX.") }
 
 }
 
