@@ -20,5 +20,6 @@ module api {
 	exports org.mercury.api.plugin.service.language;
 
 	uses org.mercury.api.plugin.service.event.EventPlugin;
+	uses org.mercury.api.plugin.service.language.LanguagePlugin;
 
 }

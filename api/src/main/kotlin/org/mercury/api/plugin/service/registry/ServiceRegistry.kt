@@ -9,8 +9,10 @@ import java.util.*
  * @since 28/6/18
  */
 
-class ServiceRegistry<TService>(_class: Class<TService>) {
+class ServiceRegistry<TService>(_class: Class<*>) {
 
-    val services = ServiceLoader.load(_class)!!
+    private val type = _class as Class<TService>
+
+    val services = ServiceLoader.load(type)!!
 
 }

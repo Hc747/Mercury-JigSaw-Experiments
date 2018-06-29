@@ -1,8 +1,8 @@
 package org.mercury
 
+import org.mercury.api.entity.event.EntityEventKey
 import org.mercury.api.entity.player.Player
 import org.mercury.api.event.EventContainer
-import org.mercury.api.entity.event.EntityEventKey
 import org.mercury.api.plugin.PluginMetaData
 import org.mercury.api.plugin.service.event.EventPlugin
 import org.mercury.api.plugin.service.registry.ServiceRegistry
@@ -23,13 +23,14 @@ object Main {
         val player = Player("Hc747")
         val container = EventContainer.withEnumKeyType(EntityEventKey::class.java, player)
 
-        val registry = ServiceRegistry(EventPlugin::class.java as Class<EventPlugin<EntityEventKey, Player>>)
+        val registry = ServiceRegistry<EventPlugin<EntityEventKey, Player>>(EventPlugin::class.java)
 
         registry.services.forEach {
             plugin -> container.register(plugin.key, plugin.event)
 
             plugin.meta().info()
         }
+
 
         container.invoke(EntityEventKey.INIT)
 

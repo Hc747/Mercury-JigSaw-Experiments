@@ -22,7 +22,7 @@ class PlayerGreeterPlugin : EventPlugin<EntityEventKey, Player> {
 
 }
 
-@PluginMetaData(name = "PlayerGreeterPlugin", description = "Bids the player farewell and thanks them for playing.", authors = ["Hc747"])
+@PluginMetaData(name = "PlayerFarewellPlugin", description = "Bids the player farewell and thanks them for playing.", authors = ["Hc747"])
 class PlayerFarewellPlugin : EventPlugin<EntityEventKey, Player> {
 
     override val key = EntityEventKey.FINISH
